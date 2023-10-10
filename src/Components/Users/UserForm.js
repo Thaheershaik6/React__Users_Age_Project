@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 
 import classes from "./UserForm.module.css";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
-import Wrapper from "../Helpers/Wrapper";
+// import Wrapper from "../Helpers/Wrapper";
 
 const UserForm = (props) => {
   const [enteredUserName, setUserEnteredName] = useState("");
@@ -45,7 +45,8 @@ const UserForm = (props) => {
   };
 
   return (
-    <Wrapper>
+    <>  
+    {/* <Fragment> or <React.Fragment> */}
     {error && <ErrorModal title={error.title} message={error.message} onErrorHandler={errorHandler}/> }
     <Card className={classes.input}>
       <form onSubmit={newUserHandler}>
@@ -64,7 +65,8 @@ const UserForm = (props) => {
         <Button type="submit">Add User</Button>
       </form>
     </Card>
-    </Wrapper>  );
+    {/* </Fragment> or </React.Fragment> */}
+    </>  );
 };
 
 export default UserForm;
