@@ -4,6 +4,7 @@ import classes from "./UserForm.module.css";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
+import Wrapper from "../Helpers/Wrapper";
 
 const UserForm = (props) => {
   const [enteredUserName, setUserEnteredName] = useState("");
@@ -44,7 +45,7 @@ const UserForm = (props) => {
   };
 
   return (
-    <div>
+    <Wrapper>
     {error && <ErrorModal title={error.title} message={error.message} onErrorHandler={errorHandler}/> }
     <Card className={classes.input}>
       <form onSubmit={newUserHandler}>
@@ -63,8 +64,7 @@ const UserForm = (props) => {
         <Button type="submit">Add User</Button>
       </form>
     </Card>
-    </div>
-  );
+    </Wrapper>  );
 };
 
 export default UserForm;
