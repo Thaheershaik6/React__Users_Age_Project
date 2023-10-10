@@ -9,21 +9,23 @@ import ErrorModal from "../UI/ErrorModal";
 const UserForm = (props) => {
   const nameInputRef = useRef();
   const ageInputRef = useRef();
+  const collageNameInputRef = useRef();
 
   const [error, setError] = useState();
 
   const newUserHandler = (event) => {
     event.preventDefault();
     const enteredName = nameInputRef.current.value;
-    const enteredUSerAge = ageInputRef.current.value;
-    if (enteredName.trim().length === 0 || enteredUSerAge.trim().length === 0) {
+    const enteredUserAge = ageInputRef.current.value;
+    const enteredCollageName = collageNameInputRef.current.value;
+    if (enteredName.trim().length === 0 || enteredUserAge.trim().length === 0 || enteredCollageName.trim().length === 0 ) {
       setError({
         title: "Invalid input",
         message: "please enter a valid name and age (non-empty values).",
       });
       return;
     }
-    if (+enteredUSerAge < 1) {
+    if (+enteredUserAge < 1) {
       //entered age converted string to number by adding + in front of enteredAge
       setError({
         title: "Invalid age",
@@ -31,9 +33,10 @@ const UserForm = (props) => {
       });
       return;
     }
-    props.onAddUser(enteredName, enteredUSerAge);
+    props.onAddUser(enteredName, enteredUserAge, enteredCollageName);
     nameInputRef.current.value = '';
     ageInputRef.current.value = '';
+    collageNameInputRef.current.value = '';
   };
 
   const errorHandler = () => {
@@ -53,17 +56,24 @@ const UserForm = (props) => {
       <Card className={classes.input}>
         <form onSubmit={newUserHandler}>
           <div>
-            <label>Username</label>
+            <label>Username:</label>
             <input
               type="text"
               ref={nameInputRef}
             />
           </div>
           <div>
-            <label>Age (years)</label>
+            <label>Age (years):</label>
             <input
               type="number"
               ref={ageInputRef}
+            />
+          </div>
+          <div>
+            <label>Collage name:</label>
+            <input
+              type="text"
+              ref={collageNameInputRef}
             />
           </div>
           <Button type="submit">Add User</Button>

@@ -8,9 +8,9 @@ function App() {
 
   const [usersList, setUsersList] = useState([]);
 
-  const addUserHandler = (uName, uAge) =>{
+  const addUserHandler = (uName, uAge, uCollage) =>{
       setUsersList((prevUSerList) => {
-        return [...prevUSerList, {id: Math.random().toString(), name: uName, age: uAge}];
+        return [...prevUSerList, {id: Math.random().toString(), name: uName, age: uAge, collage: uCollage}];
       });
   };
 
